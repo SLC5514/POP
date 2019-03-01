@@ -10,6 +10,9 @@
                         </div>
                         <div>销售微信分发平台</div>
                     </el-col>
+                    <el-col :span="14">
+                        <div class="grid-content"></div>
+                    </el-col>
                     <el-col :span="4" class="head-right">
                         <div class="login-type">
                             <el-button type="text" style="color:#fff;" @click="loginOut">登出</el-button>
@@ -30,6 +33,9 @@
                         <el-menu-item index="product">
                             <router-link tag="div" to="/product">产品管理</router-link>
                         </el-menu-item>
+                        <el-menu-item index="fashion">
+                            <router-link tag="div" to="/fashion">今日时尚</router-link>
+                        </el-menu-item>
                     </el-menu>
                 </el-aside>
                 <el-main class="main">
@@ -41,6 +47,7 @@
 </template>
 
 <script>
+import getData from "./assets/getData";
 export default {
     name: "App",
     data () {
@@ -106,13 +113,10 @@ img {
       line-height: 60px;
       position: fixed;
       width: 100%;
-      min-width: 1200px;
       top: 0;
       left: 0;
       z-index: 2000;
       .head-left {
-        min-width: 220px;
-        float: left;
         & > div {
           float: left;
         }
@@ -129,8 +133,6 @@ img {
         min-height: 36px;
       }
       .head-right {
-        min-width: 150px;
-        float: right;
         & > div {
           float: right;
           margin: 0 10px;
@@ -201,7 +203,7 @@ div.mce-menubtn.mce-opened { z-index: 999!important;}
     margin-bottom: 2vh;
   }
 }
-.product-add {
+.product-add, .fashion-add {
   .el-textarea__inner {
     overflow: hidden;
   }

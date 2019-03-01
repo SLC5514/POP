@@ -9,7 +9,7 @@
         drag
         accept="png"
         :file-list="[]"
-        :action="$productUploadImg + '/product/uploadVideo'"
+        :action="$productUploadImg + tinymceData.video"
         name="video"
         :on-success="handleAvatarSuccess"
         :on-error="handleAvatarError"
@@ -39,7 +39,7 @@ import 'tinymce/plugins/code';
 
 export default {
   name: 'tinymce',
-  props: ['content'],
+  props: ['tinymceData', 'content'],
   components: {Editor},
   data () {
     const _self = this;
@@ -63,7 +63,7 @@ export default {
           _self.uploadVideoType = true;
         },
         plugins: 'media image link hr textcolor paste colorpicker code',
-        images_upload_url: _self.$productUploadImg + '/product/uploadImg/',
+        images_upload_url: _self.$productUploadImg + _self.tinymceData.img,
         images_upload_base_path: '',
         images_upload_credentials: true,
         toolbar: [
@@ -92,7 +92,7 @@ export default {
                 area:['90%','300px;'],
                 success: function(layero, index){
                   $("#zwb_upload").bindUpload({
-                    url: _self.$productUploadImg + "/product/uploadImg/",//上传服务器地址
+                    url: _self.$productUploadImg + _self.tinymceData.img,//上传服务器地址
                     num:10,//上传数量的限制 默认为空 无限制
                     type:"jpg|png|gif|svg",//上传文件类型 默认为空 无限制
                     size:3,//上传文件大小的限制,默认为5单位默认为mb

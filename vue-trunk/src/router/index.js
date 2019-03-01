@@ -36,6 +36,23 @@ export default new Router({
           component: () => import('@/view/ProductAdd')
         }
       ]
+    },
+    {
+      path: '/fashion',
+      name: 'fashion',
+      component: () => import('@/view/Fashion'),
+      children: [
+        {
+          path: 'fashion_compile',
+          name: 'fashion_compile',
+          component: () => import('@/view/FashionCompile')
+        },
+        {
+          path: 'fashion_add',
+          name: 'fashion_add',
+          component: () => import('@/view/FashionAdd')
+        }
+      ]
     }
   ]
 });
