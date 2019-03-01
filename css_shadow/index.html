@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            padding: 50px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .box>div {
+            width: 50px;
+            height: 50px;
+            margin: 50px;
+            border: 1px solid orange;
+        }
+        section {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <section>以 box-shadow: 1px 2px 3px 4px #333 为例，4 个数值的含义分别是: <br>
+            x 方向偏移值、y 方向偏移值 、模糊半径、扩张半径。</section>
+        <style>
+            .box>.box1 {
+                box-shadow: 3px 3px 1px 1px #666;
+            }
+        </style>
+        <div class="box1"></div>
+        <style>
+            .box>.box2 {
+                box-shadow: 0 0 3px 3px #666;
+            }
+        </style>
+        <div class="box2"></div>
+        <section>扩张半径可以为负值。（单侧投影）</section>
+        <style>
+            .box>.box3 {
+                box-shadow: -7px 0 5px -5px #666;
+            }
+        </style>
+        <div class="box3"></div>
+        <style>
+            .box>.box4 {
+                box-shadow: 7px 0 5px -5px #666;
+            }
+        </style>
+        <div class="box4"></div>
+        <style>
+            .box>.box5 {
+                box-shadow: 0 -7px 5px -5px #666;
+            }
+        </style>
+        <div class="box5"></div>
+        <style>
+            .box>.box6 {
+                box-shadow: 0 7px 5px -5px #666;
+            }
+        </style>
+        <div class="box6"></div>
+        <section>box-shadow 是可以设置多层的，也就是多层阴影，而且可以进行过渡变换动画（补间动画）。</section>
+        <section>但是 background-image: linear-gradient()，也就是渐变背景是不能进行补间动画的。</section>
+        <style>
+            .box>.box7 {
+                position: relative;
+                width: 250px;
+                height: 250px;
+            }
+            .box>.box7::before {
+                content: "";
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                top: -50px;
+                left: -50px;
+                box-shadow:
+                50px 50px #000, 150px 50px #000, 250px 50px #000,
+                50px 100px #000, 150px 100px #000, 250px 100px #000,
+                50px 150px #000, 150px 150px #000, 250px 150px #000,
+                50px 200px #000, 150px 200px #000, 250px 200px #000,
+                50px 250px #000, 150px 250px #000, 250px 250px #000;
+            }
+        </style>
+        <div class="box7"></div>
+        <section>用渐变来实现的话，只需要这样：</section>
+        <style>
+            .box>.box8 {
+                width: 250px;
+                height: 250px;
+                background-image: linear-gradient(90deg, #000 0%, #000 50%, #fff 50%, #fff 100%);
+                background-size:  100px 100px;
+            }
+        </style>
+        <div class="box8"></div>
+        <section>box-shadow实现背景动画:</section>
+        <style>
+            .box>.box9 {
+                position: relative;
+                width: 250px;
+                height: 250px;
+                border: 1px solid #333;
+                box-sizing: border-box;
+                margin: 50px;
+                float: left;
+                /* animation: change 3s infinite linear alternate; */
+                overflow: hidden;
+            }
+            .box>.box9::before {
+                content: "";
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                top: -50px;
+                left: -50px;
+                box-shadow: 
+                    50px 50px, 150px 50px, 250px 50px,
+                    50px 100px, 150px 100px, 250px 100px,
+                    50px 150px, 150px 150px, 250px 150px,
+                    50px 200px, 150px 200px, 250px 200px,
+                    50px 250px, 150px 250px, 250px 250px;
+                animation: move 3s infinite linear;
+            }
+            @keyframes change {
+                25% {
+                    transform: scale(.5);
+                }
+            }
+            @keyframes move {
+                25% {
+                    transform: translate(50px);
+                    color: coral;
+                    box-shadow: 
+                        50px 50px, 150px 50px, 250px 50px,
+                        50px 100px, 150px 100px, 250px 100px,
+                        50px 150px, 150px 150px, 250px 150px,
+                        50px 200px, 150px 200px, 250px 200px,
+                        50px 250px, 150px 250px, 250px 250px;
+                }
+                50% {
+                    transform: translate(0px);
+                    color: brown;
+                    border-radius: 0;
+                    box-shadow: 
+                        50px 50px, 150px 50px, 250px 50px,
+                        100px 100px, 200px 100px, 300px 100px,
+                        50px 150px, 150px 150px, 250px 150px,
+                        100px 200px, 200px 200px, 300px 200px,
+                        50px 250px, 150px 250px, 250px 250px;
+                }
+                75% {
+                    transform: translate(0px);
+                    color: teal;
+                    border-radius: 50%;
+                    box-shadow: 
+                        50px 50px, 150px 50px, 250px 50px,
+                        100px 100px, 200px 100px, 300px 100px,
+                        50px 150px, 150px 150px, 250px 150px,
+                        100px 200px, 200px 200px, 300px 200px,
+                        50px 250px, 150px 250px, 250px 250px;
+                }
+                100% {
+                    border-radius: 0%;
+                    box-shadow: 
+                        50px 50px, 150px 50px, 250px 50px,
+                        50px 100px, 150px 100px, 250px 100px,
+                        50px 150px, 150px 150px, 250px 150px,
+                        50px 200px, 150px 200px, 250px 200px,
+                        50px 250px, 150px 250px, 250px 250px;
+                }
+            }
+        </style>
+        <div class="box9"></div>
+        <section><a href="https://codepen.io/Chokcoco/pen/LgdRKE?editors=1100">立体投影</a></section>
+        <style>
+            .box>.box10,.box>.box11,.box>.box12 {
+                position: relative;
+                width: 600px;
+                height: 100px;
+                background: hsl(48, 100%, 50%);
+                border-radius: 20px;
+            }
+            .box>.box10::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 5%;
+                right: 5%;
+                bottom: 0;
+                border-radius: 10px;
+                background: hsl(48, 100%, 20%);
+                transform: translate(0, -15%) rotate(-4deg);
+                transform-origin: center center;
+                box-shadow: 0 0 20px 15px hsl(48, 100%, 20%);
+                z-index: -1;
+            }
+            .box>.box11 {
+                background: hsl(199, 98%, 48%);
+                box-shadow: 0 0 5px 2px hsl(199, 98%, 40%);
+            }
+            .box>.box11::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 5%;
+                right: 5%;
+                bottom: 15%;
+                border-radius: 10px;
+                background: hsl(199, 98%, 20%);
+                transform: translate(0, -20%) rotate(-4deg);
+                transform-origin: center center;
+                box-shadow: 0 0 20px 15px hsl(199, 98%, 20%);
+                z-index: -1;
+            }
+            .box>.box11::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 5%;
+                right: 5%;
+                bottom: 15%;
+                border-radius: 10px;
+                background: hsl(199, 98%, 20%);
+                transform: translate(0, -20%) rotate(4deg);
+                transform-origin: center center;
+                box-shadow: 0 0 20px 15px hsl(199, 98%, 20%);
+                z-index: -1;
+            }
+            .box>.box12 {
+                background: hsl(150, 62%, 52%);
+                box-shadow: 0 0 5px 2px hsl(150, 62%, 40%);
+            }
+            .box>.box12::before {
+                content: "";
+                position: absolute;
+                top: 15%;
+                bottom: 20%;
+                left: 90%;
+                right: 5%;
+                border-radius: 10px;
+                background: hsl(150, 62%, 20%);
+                transform: translate(105%, 10%) rotate(15deg);
+                transform-origin: center center;
+                box-shadow: 0 0 10px 7px hsl(150, 62%, 20%);
+                z-index: -1;
+            }
+            .box>.box12::after {
+                content: "";
+                position: absolute;
+                top: 15%;
+                bottom: 20%;
+                left: 5%;
+                right: 90%;
+                border-radius: 10px;
+                background: hsl(150, 62%, 20%);
+                transform: translate(-105%, 10%) rotate(-15deg);
+                transform-origin: center center;
+                box-shadow: 0 0 10px 7px hsl(150, 62%, 20%);
+                z-index: -1;
+            }
+        </style>
+        <div class="box10"></div>
+        <div class="box11"></div>
+        <div class="box12"></div>
+        <section><a href="https://codepen.io/Chokcoco/pen/JmgNNa">文字立体投影 / 文字长阴影</a></section>
+        <style>
+            .box>.box13 {
+                font-size: 50px;
+                text-shadow: 6px 6px 3px hsla(14, 100%, 30%, 1);
+            }
+        </style>
+        <p class="box13">Txt Shadow</p>
+        <section><a href="https://codepen.io/Chokcoco/pen/XxQJEB?editors=1100">条纹立体阴影条纹字</a></section>
+        <section><a href="https://codepen.io/Chokcoco/pen/qJvVGy">长投影</a></section>
+        <section><a href="https://codepen.io/Chokcoco/pen/eGYYpo">彩色投影</a></section>
+    </div>
+</body>
+</html>

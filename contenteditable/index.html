@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Chrome浏览器支持比较好: -->
+    <!-- 1. contenteditable -->
+    <!-- contenteditable=""
+            contenteditable="events"
+            contenteditable="caret"
+            contenteditable="plaintext-only"只能输入纯文本
+            contenteditable="true"
+            contenteditable="false" -->
+    <div contenteditable="true">放假放假放假放假放假放假放假放假放假</div>
+    <!-- 2. user-modify -->
+    <!-- user-modify: read-only;
+            user-modify: write-only;
+            user-modify: read-write;可输入富文本
+            user-modify: read-write-plaintext-only;只能输入纯文本 -->
+    <div style="-webkit-user-modify: read-write;">干活干活干活干活干活干活干活干活干活</div>
+</body>
+
+</html>
+<!-- contenteditable元素纯文本输入控制demo https://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/ => https://www.zhangxinxu.com/study/201601/contenteditable-plaintext-only.html -->
+<!-- 新浪微博插入话题后部分文字选中的js实现 https://www.zhangxinxu.com/wordpress/2010/04/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E6%8F%92%E5%85%A5%E8%AF%9D%E9%A2%98%E5%90%8E%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E9%80%89%E4%B8%AD%E7%9A%84js%E5%AE%9E%E7%8E%B0/ -->
